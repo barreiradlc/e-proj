@@ -7,7 +7,53 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+@override
+  _MyCustomFormState createState() => _MyCustomFormState();
+}
+
+// Define a corresponding State class.
+// This class holds the data related to the Form.
+class _MyCustomFormState extends State<Home> {
+  
+
+
+Future<String> getLogin() async {
+  
+  // var url = 'https://agencia-provisorio.000webhostapp.com/';
+  // var endpoint = 'wp-json/jwt-auth/v1/token';
+
+  // http.Response response = await http.post(Uri.encodeFull(url + endpoint),
+  //     body: {'username': 'WebDesign', 'password': 'web!gestao'});
+  const bool kIsWeb = identical(0, 0.0);
+
+  // var token = jsonDecode(response.body);
+
+  // print(token);
+
+  if (kIsWeb) {
+    // web.window.localStorage['mypref'] = token['token'];
+    Navigator.pushNamed(context, '/login');
+    print('não mobile');
+  } else {
+    Navigator.pushNamed(context, '/login');
+    print('é mobile xuxu');
+  }
+
+  // web.window.localStorage['mypref'] = token['token'];
+
+  // if (token['token'] != null) {
+  //   print('login');
+  //   Navigator.pushNamed(context, '/home');
+  // } else {
+  //   print('tratar erro');
+  // }
+
+  // if (!Platform.isIOS && !Platform.isAndroid) {
+  // }
+}
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,6 +70,25 @@ class Home extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      RaisedButton(
+                        onPressed: getLogin,
+                        color: Colors.blue,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: 
+                          Column(
+                            children: <Widget>[
+                              Icon(Icons.people),
+                              Text('Começar agora', style: TextStyle(fontSize: 20)),
+
+                            ],
+                            )
+                        ),
+                      ),
+                    ],
+                  ),
                   Icon(Icons.location_city, size: 42),
                   Text('EPROJ',
                       style:
@@ -113,37 +178,35 @@ class Home extends StatelessWidget {
               ],
             ),
             Text(
-                  'Sobre',
+              'Sobre',
+              style: new TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w600,
+                fontSize: 60,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Text(
+                  'QUEM SOMOS',
                   style: new TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
-                    fontSize: 60,
+                    fontSize: 42.0,
                   ),
                 ),
-            Row(
-            
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Text(
-                        'QUEM SOMOS',
-                        style: new TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 42.0,
-                        ),
-                      ),
-                      Container(
-                          width: 400,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              new Text(
-                                "A EPROJECT é uma empresa que desenvolve projetos de arquitetura e engenharia para edificações de pequeno porte e os oferece de forma totalmente online. \nNós acreditamos que o futuro está na possibilidade das pessoas resolverem problemas a hora que quiserem e de forma autônoma. E por isso automatizamos processos de arquitetura e engenharia para que qualquer pessoa consiga entender, projetar e executar uma obra por si só.\n O cliente poderá escolher, modelar, personalizar, estimar custos e até contratar todos profissionais necessários em uma obra em um só lugar.",
-                                style: new TextStyle(color: Colors.grey),
-                              )
-                            ],
-                          )),
-                 
+                Container(
+                    width: 400,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        new Text(
+                          "A EPROJECT é uma empresa que desenvolve projetos de arquitetura e engenharia para edificações de pequeno porte e os oferece de forma totalmente online. \nNós acreditamos que o futuro está na possibilidade das pessoas resolverem problemas a hora que quiserem e de forma autônoma. E por isso automatizamos processos de arquitetura e engenharia para que qualquer pessoa consiga entender, projetar e executar uma obra por si só.\n O cliente poderá escolher, modelar, personalizar, estimar custos e até contratar todos profissionais necessários em uma obra em um só lugar.",
+                          style: new TextStyle(color: Colors.grey),
+                        )
+                      ],
+                    )),
               ],
             ),
           ],

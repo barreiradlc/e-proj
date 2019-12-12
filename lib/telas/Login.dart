@@ -1,115 +1,209 @@
+import 'dart:io' show Platform;  //at the top
+import 'package:flutter/foundation.dart' show TargetPlatform;
+
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter/foundation.dart'
     show debugDefaultTargetPlatformOverride;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:universal_html/prefer_universal/html.dart' as web;
 
 
-class Login extends StatelessWidget {
-  
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
-  final _formLogin = GlobalKey<FormState>();
-  final _formSenha = GlobalKey<FormState>();
+
+// Define a custom Form widget.
+class Login extends StatefulWidget {
+  @override
+  _MyCustomFormState createState() => _MyCustomFormState();
+}
+
+// Define a corresponding State class.
+// This class holds the data related to the Form.
+class _MyCustomFormState extends State<Login> {
+  // Create a text controller and use it to retrieve the current value
+  // of the TextField.
+
+  // final myController = TextEditingController(text: 'test4567@example.com');
+  // final myController2 = TextEditingController(text: 'password');
+
+  final myController = TextEditingController(text: '');
+  final myController2 = TextEditingController(text: '');
+
+  Future<String> getReq() async {
+    // cloud
+    var url = 'https://ae-teste.herokuapp.com';
+
+    // local
+    // var url = 'http://localhost:3000';
+    
+    var endpoint = '/auth/login';
+    
+      print('req');
+      http.Response response =
+        await http.post(Uri.encodeFull(url + endpoint), body: {
+        // 'username': usuarioCred.text,
+        'email': myController.text,
+        'password': myController2.text
+      });
+      const bool kIsWeb = identical(0, 0.0);
+      var res = jsonDecode(response.body);
+
+      if (res['errors'] == null) {
+        SharedPreferences jwt = await SharedPreferences.getInstance();
+
+        print('sucesso');
+        print(res);
+        print(res['token']);
+        print('sucesso');
+        // http.Response res2 = await http.post(Uri.encodeFull(url + endpoint),
+        //     body: {'email': emailCred.text, 'password': senhaCred.text});
+        // var login = jsonDecode(res2.body);
+
+        // if (kIsWeb) {
+        //   web.window.localStorage['mypref'] = login['token'];
+        //   print('não mobile');
+        // } else {  
+        //   await jwt.setString('jwt', login['token']);
+        //   print("mobile");
+        // }
+        await jwt.setString('jwt', res['token']);
+        await jwt.setString('username', res['username']);
+        
+        Navigator.pushNamed(context, '/home');
+        
+
+      } else {
+        print('erro');
+      }
+
+      // print(token);
+
+    // } else {
+    //   print('deu ruim');
+    //   return showDialog(
+    //     context: context,
+    //     builder: (context) {
+    //       return AlertDialog(
+    //           // Retrieve the text the that user has entered by using the
+    //           // TextEditingController.
+    //           content: Text(
+    //         "A senha e confirmação se diferem",
+    //       ));
+    //     },
+    //   );
+    // }
+    // //
+
+    // // if (!Platform.isIOS && !Platform.isAndroid) {
+    // // }
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+    myController2.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         title: Text('Login'),
-        
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Bem vindo',
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 34),
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(32.0),
+            child: Text(
+              "EPROJ",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 42),
             ),
-            Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Form(
-                key: _formLogin,
-                child: // Build this out in the next steps.
-                    TextFormField(
-                  obscureText: false,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Login',
-                  ),
-                  // The validator receives the text that the user has entered.
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Tens que digitar algo';
-                    } else {
-                        Navigator.pushNamed(context, '/second');
-                    }
-                  },
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Form(
-                key: _formSenha,
-                child: // Build this out in the next steps.
-                    TextFormField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Senha',
-                  ),
-                  // The validator receives the text that the user has entered.
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Tens que digitar algo';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-            ),
-            const SizedBox(height: 30, width: 80),
-            RaisedButton(
-              padding: const EdgeInsets.all(0.0),
-
-              onPressed: () {
-                // Validate returns true if the form is valid, otherwise false.
-                if (_formLogin.currentState.validate() &&
-                    _formSenha.currentState.validate()) {
-                  // If the form is valid, display a snackbar. In the real world,
-                  // you'd often call a server or save the information in a database.
-
-                  Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text('Processing Data')));
-                }
-              },
-              child: Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: <Color>[
-                      
-                      Color(0xffffff00),
-                      Color(0xfcba0300),
-                      Color(0xffd86b00),
-                      Color(0xffd86b00),
-                      
-                    ],
-                  ),
-                ),
-                padding: const EdgeInsets.all(20.0),
-                child: const Text('Login',
-                    style: TextStyle(height:1, fontSize: 20, color:Colors.white)),
-              ),
-            ),
-          ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: TextField(
+              controller: myController,
+              obscureText: false,
+              decoration: InputDecoration(
+                // border: OutlineInputBorder(),
+                border: new OutlineInputBorder(
+        borderRadius: const BorderRadius.all(
+          const Radius.circular(10.0),
         ),
+      ),
+      filled: true,
+      hintStyle: new TextStyle(color: Colors.grey[800]),
+      hintText: "Digite seu email cadastrado",
+      labelText: 'Usuário',
+      fillColor: Colors.white70),
+                
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(6.0),
+            child: TextField(
+              controller: myController2,
+              obscureText: true,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Senha',
+              ),
+            ),
+          ),
+          RaisedButton(
+            onPressed: getReq,
+            color: Colors.lime,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text('Login', style: TextStyle(fontSize: 20)),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(32.0),
+            child:RaisedButton(
+            
+            onPressed: (){
+              Navigator.pushNamed(context, '/cadastro');
+            },
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Text('Ainda não tem uma conta? Clique aqui para registrar-se', style: TextStyle(fontSize: 10)),
+            ),
+          ),
+          )       
+
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        // When the user presses the button, show an alert dialog containing
+        // the text that the user has entered into the text field.
+        onPressed: () {
+          return showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                // Retrieve the text the that user has entered by using the
+                // TextEditingController.
+                content: Text(myController.text + myController2.text),
+              );
+            },
+          );
+        },
+        tooltip: 'Show me the value!',
+        child: Icon(Icons.text_fields),
       ),
     );
   }
 }
-
