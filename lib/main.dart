@@ -20,7 +20,7 @@ import 'package:flutter/services.dart';
 
 // telas
 import  './telas/Home.dart';
-import  './telas/Login.dart';
+// import  './telas/Login.dart';
 
 
 
@@ -33,7 +33,10 @@ void main() {
 class MyApp extends StatelessWidget {
 
   var inicio = new Home();
-  var login = new Login();
+  // var login = new Login();
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +47,10 @@ class MyApp extends StatelessWidget {
         // See https://github.com/flutter/flutter/wiki/Desktop-shells#fonts
         fontFamily: 'Roboto',
       ),
-    
-    initialRoute: '/login',
+    initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
-        '/login': (context) => login,
+        // '/login': (context) => login,
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/': (context) => inicio,
       },

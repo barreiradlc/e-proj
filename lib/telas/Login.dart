@@ -30,7 +30,6 @@ class Login extends StatefulWidget {
 class _MyCustomFormState extends State<Login> {
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
-
   // final myController = TextEditingController(text: 'test4567@example.com');
   // final myController2 = TextEditingController(text: 'password');
 
@@ -125,7 +124,7 @@ class _MyCustomFormState extends State<Login> {
           Padding(
             padding: const EdgeInsets.all(32.0),
             child: Text(
-              "EPROJ",
+              "ECARTO",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 42),
             ),
           ),
@@ -135,18 +134,8 @@ class _MyCustomFormState extends State<Login> {
               controller: myController,
               obscureText: false,
               decoration: InputDecoration(
-                // border: OutlineInputBorder(),
-                border: new OutlineInputBorder(
-        borderRadius: const BorderRadius.all(
-          const Radius.circular(10.0),
-        ),
-      ),
-      filled: true,
-      hintStyle: new TextStyle(color: Colors.grey[800]),
-      hintText: "Digite seu email cadastrado",
-      labelText: 'Usuário',
-      fillColor: Colors.white70),
-                
+                border: OutlineInputBorder(),
+                labelText: 'Usuário',
               ),
             ),
           ),
