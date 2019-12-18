@@ -34,25 +34,25 @@ class Home extends StatelessWidget {
                 icon: new Icon(Icons.home),
               ),
               Tab(
-                icon: new Icon(Icons.rss_feed),
+                icon: new Icon(Icons.lightbulb_outline),
               ),
               Tab(
-                icon: new Icon(Icons.perm_identity),
+                icon: new Icon(Icons.straighten),
               ),
               Tab(
-                icon: new Icon(Icons.settings),
+                icon: new Icon(Icons.format_paint),
               ),
               Tab(
-                icon: new Icon(Icons.rss_feed),
+                icon: new Icon(Icons.library_books),
               )
             ],
-            labelColor: Colors.yellow,
-            unselectedLabelColor: Colors.blue,
+            labelColor: Colors.white ,
+            unselectedLabelColor: Colors.black38,
             indicatorSize: TabBarIndicatorSize.label,
             indicatorPadding: EdgeInsets.all(5.0),
             indicatorColor: Colors.red,
           ),
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.lightBlue,
         ),
       ),
     );

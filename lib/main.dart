@@ -20,8 +20,8 @@ import 'package:flutter/services.dart';
 
 // telas
 import  './telas/Home.dart';
-// import  './telas/Login.dart';
-
+import  './telas/Login.dart';
+import  './telas/Cadastro.dart';
 
 
 void main() {
@@ -33,24 +33,25 @@ void main() {
 class MyApp extends StatelessWidget {
 
   var inicio = new Home();
-  // var login = new Login();
-
+  var login = new Login();
+  var cadastro = new Cadastro();
 
 
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {  
     return 
     MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.lime,
+        primarySwatch: Colors.lightBlue,
         // See https://github.com/flutter/flutter/wiki/Desktop-shells#fonts
         fontFamily: 'Roboto',
       ),
-    initialRoute: '/',
+      initialRoute: '/login',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
-        // '/login': (context) => login,
+        '/login': (context) => login,
+        '/cadastro': (context) => cadastro,
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/': (context) => inicio,
       },
