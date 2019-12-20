@@ -1,8 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
+
+import '../Telas/Home/Inicio.dart';
+import '../Funcoes/UserData.dart';
 
 class Home extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('E-proj')),
+        body: HomeState(),
+      ),
+    );
+  }
+}
+
+class HomeState extends StatefulWidget{
+  @override
+  Tabs createState() => Tabs();
+}
+
+
+class Tabs extends State<HomeState>{
+  String jwt = 'testeJWT';
+  String username = '';
+
   @override
   Widget build(BuildContext context) {
+
+
+    // var user = UserData.void_getJWT();
+    
+    // setState(() {
+    //   this.jwt = jwt;
+    //   this.username = username;
+    // });
+    // print('out');
+    // print(user);
+
     // TODO: implement build
     return new MaterialApp(
       color: Colors.yellow,
@@ -13,6 +50,8 @@ class Home extends StatelessWidget {
             children: [
               new Container(
                 color: Colors.yellow,
+                child:Inicio()
+                // child: Text('Bem vindo ' + this.username)
               ),
               new Container(
                 color: Colors.orange,

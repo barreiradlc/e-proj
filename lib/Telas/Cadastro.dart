@@ -41,7 +41,7 @@ class _MyCustomFormState extends State<Cadastro> {
     // var url = 'http://localhost:3000';
     var endpoint = 'users';
     var endpointSessao = '/sessions';
-    if (senhaCred.text == null){
+    if (senhaCred.text == null) {
       print('nada');
     }
     if (senhaCred.text == senhaConfirmaCred.text) {
@@ -119,105 +119,109 @@ class _MyCustomFormState extends State<Cadastro> {
         title: Text('Cadastro'),
         backgroundColor: Colors.white,
       ),
-      body: ListView(
-        children: <Widget>[
-          Container(
-            alignment: AlignmentDirectional(0.0, 0.0),
-            padding: new EdgeInsets.all(5.0),
-            color: Colors.lightBlue,
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Image(
-                  image: AssetImage('assets/imgs/eproject-logo-logotipo.png')),
-            ),
-          ),
-          // Padding(
-          //   padding: const EdgeInsets.all(32.0),
-          //   child: Text(
-          //     "ECARTO",
-          //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 42),
-          //   ),
-          // ),
-          Padding(
-            padding: const EdgeInsets.only(top: 25.0),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: TextField(
-              controller: usuarioCred,
-              obscureText: false,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: const BorderRadius.all(
-                    const Radius.circular(50.0),
-                  ),
-                ),
-                hintStyle: new TextStyle(color: Colors.grey[800]),
-                labelText: 'Usuário',
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: TextField(
-              controller: emailCred,
-              obscureText: false,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: const BorderRadius.all(
-                    const Radius.circular(50.0),
-                  ),
-                ),
-                hintStyle: new TextStyle(color: Colors.grey[800]),
-                labelText: 'E-mail',
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(6.0),
-            child: TextField(
-              controller: senhaCred,
-              obscureText: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: const BorderRadius.all(
-                    const Radius.circular(50.0),
-                  ),
-                ),
-                // labelStyle: new TextStyle(color: Colors.grey[800]),
-                labelText: 'Senha',
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(6.0),
-            child: TextField(
-              controller: senhaConfirmaCred,
-              obscureText: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: const BorderRadius.all(
-                    const Radius.circular(50.0),
-                  ),
-                ),
-                // labelStyle: new TextStyle(color: Colors.grey[800]),
-                labelText: 'Confirme sua senha',
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20.0),
-            child: RaisedButton(
-              onPressed: cadastroReq,
+      body: ListView(children: <Widget>[
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              alignment: AlignmentDirectional(0.0, 0.0),
+              padding: new EdgeInsets.all(5.0),
               color: Colors.lightBlue,
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text('Cadastrar', style: TextStyle(fontSize: 20)),
+                padding: const EdgeInsets.all(10),
+                child: Image(
+                    image:
+                        AssetImage('assets/imgs/eproject-logo-logotipo.png')),
               ),
             ),
-          ),
-        ],
-      ),
+            // Padding(
+            //   padding: const EdgeInsets.all(32.0),
+            //   child: Text(
+            //     "ECARTO",
+            //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 42),
+            //   ),
+            // ),
+            Padding(
+              padding: const EdgeInsets.only(top: 25.0),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: TextField(
+                controller: usuarioCred,
+                obscureText: false,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: const BorderRadius.all(
+                      const Radius.circular(50.0),
+                    ),
+                  ),
+                  hintStyle: new TextStyle(color: Colors.grey[800]),
+                  labelText: 'Usuário',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: TextField(
+                controller: emailCred,
+                obscureText: false,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: const BorderRadius.all(
+                      const Radius.circular(50.0),
+                    ),
+                  ),
+                  hintStyle: new TextStyle(color: Colors.grey[800]),
+                  labelText: 'E-mail',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: TextField(
+                controller: senhaCred,
+                obscureText: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: const BorderRadius.all(
+                      const Radius.circular(50.0),
+                    ),
+                  ),
+                  // labelStyle: new TextStyle(color: Colors.grey[800]),
+                  labelText: 'Senha',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: TextField(
+                controller: senhaConfirmaCred,
+                obscureText: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: const BorderRadius.all(
+                      const Radius.circular(50.0),
+                    ),
+                  ),
+                  // labelStyle: new TextStyle(color: Colors.grey[800]),
+                  labelText: 'Confirme sua senha',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: RaisedButton(
+                onPressed: cadastroReq,
+                color: Colors.lightBlue,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text('Cadastrar', style: TextStyle(fontSize: 20)),
+                ),
+              ),
+            ),
+          ],
+        )
+      ]),
       // floatingActionButton: FloatingActionButton(
       //   // When the user presses the button, show an alert dialog containing
       //   // the text that the user has entered into the text field.

@@ -29,11 +29,12 @@ class Login extends StatefulWidget {
 class _MyCustomFormState extends State<Login> {
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
-  // final myController = TextEditingController(text: 'test4567@example.com');
-  // final myController2 = TextEditingController(text: 'password');
 
-  final myController = TextEditingController(text: '');
-  final myController2 = TextEditingController(text: '');
+  final myController = TextEditingController(text: 'barreira266@hotmail.com');
+  final myController2 = TextEditingController(text: '123123123');
+
+  // final myController = TextEditingController(text: '');
+  // final myController2 = TextEditingController(text: '');
 
   Future<String> getReq() async {
     // cloud
@@ -60,7 +61,10 @@ class _MyCustomFormState extends State<Login> {
 
       print('sucesso');
       print(res);
-      print(res['token']);
+      
+      var resToken = res['token'];
+      var resUsername = res['perfil'];
+      print(resUsername[0]['username']);
       print('sucesso');
       // http.Response res2 = await http.post(Uri.encodeFull(url + endpoint),
       //     body: {'email': emailCred.text, 'password': senhaCred.text});
@@ -73,8 +77,8 @@ class _MyCustomFormState extends State<Login> {
       //   await jwt.setString('jwt', login['token']);
       //   print("mobile");
       // }
-      await jwt.setString('jwt', res['token']);
-      await jwt.setString('username', res['username']);
+      await jwt.setString('jwt', resToken['token']);
+      await jwt.setString('username', resUsername[0]['username']);
 
       Navigator.pushNamed(context, '/home');
     } else {
@@ -118,6 +122,7 @@ class _MyCustomFormState extends State<Login> {
       //   title: Text('Login'),
       // ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           // Padding(
           //   padding: const EdgeInsets.all(32.0),
@@ -127,123 +132,128 @@ class _MyCustomFormState extends State<Login> {
           //   ),
           // ),
           Container(
-            alignment: AlignmentDirectional(0.0, 0.0),
-            padding: new EdgeInsets.all(15.0),
+            alignment: Alignment.topCenter,
+            padding: new EdgeInsets.all(30.0),
             color: Colors.lightBlue,
             child: Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(30),
               child: Image(
                   image: AssetImage('assets/imgs/eproject-logo-logotipo.png')),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: TextField(
-              controller: myController,
-              obscureText: false,
 
-              // decoration: new InputDecoration(
-              //       border: new OutlineInputBorder(
-              //         borderRadius: const BorderRadius.all(
-              //           const Radius.circular(10.0),
-              //         ),
-              //       ),
-              //       filled: true,
-              //       hintStyle: new TextStyle(color: Colors.grey[800]),
-              //       hintText: "Type in your text",
-              //       fillColor: Colors.white70),
-
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: const BorderRadius.all(
-                    const Radius.circular(50.0),
+          //
+          // Form
+          //
+          Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextField(
+                    controller: myController,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(
+                          const Radius.circular(50.0),
+                        ),
+                      ),
+                      labelText: 'E-mail',
+                    ),
                   ),
                 ),
-                hintStyle: new TextStyle(color: Colors.grey[800]),
-                hintText: "E-mail",
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: TextField(
-              controller: myController2,
-              obscureText: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: const BorderRadius.all(
-                    const Radius.circular(50.0),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextField(
+                    controller: myController2,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(
+                          const Radius.circular(50.0),
+                        ),
+                      ),
+                      labelText: 'Senha',
+                    ),
                   ),
                 ),
-                hintStyle: new TextStyle(color: Colors.grey[800]),
-                hintText: "Senha",
-              ),
-            ),
-          ),
+                Padding(
+                  // margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+                  padding: const EdgeInsets.all(16.0),
+                  child: RaisedButton(
+                    onPressed: getReq,
+                    color: Colors.lightBlueAccent,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Login', style: TextStyle(fontSize: 20)),
+                    ),
+                  ),
+                ),
+              ]),
+
+          //
+          // Form
+          //
+
           Padding(
             // margin: const EdgeInsets.only(left: 20.0, right: 20.0),
-            padding: const EdgeInsets.all(16.0),
-            child: RaisedButton(
-              onPressed: getReq,
-              color: Colors.lightBlueAccent,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('Login', style: TextStyle(fontSize: 20)),
-              ),
-            ),
-          ),
-          Padding(
-            // margin: const EdgeInsets.only(left: 20.0, right: 20.0),
-            padding: const EdgeInsets.all(4.0),
+            padding: const EdgeInsets.only(bottom:30.0),
             child: RaisedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/cadastro');
               },
               color: Colors.white,
               child: Padding(
-                padding: const EdgeInsets.all(2.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Text(
                     'Ainda não tem uma conta? Clique aqui para registrar-se',
                     style: TextStyle(fontSize: 10)),
               ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              IconButton(
-                  // Use the FontAwesomeIcons class for the IconData
-                  icon: new Icon(FontAwesomeIcons.googlePlus),
-                  onPressed: () {
-                    print("Pressed");
-                    return showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          // Retrieve the text the that user has entered by using the
-                          // TextEditingController.
-                          content: Text("Funcionalidade em Desenvolvimento"),
-                        );
-                      },
-                    );
-                  }),
-              IconButton(
-                  // Use the FontAwesomeIcons class for the IconData
-                  icon: new Icon(FontAwesomeIcons.facebook),
-                  onPressed: () {
-                    return showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          // Retrieve the text the that user has entered by using the
-                          // TextEditingController.
-                          content: Text("Funcionalidade em Desenvolvimento"),
-                        );
-                      },
-                    );
-                  })
-            ],
-          )
+
+          // ÍCONES SOCIAIS
+
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //   children: <Widget>[
+          //     IconButton(
+          //         // Use the FontAwesomeIcons class for the IconData
+          //         icon: new Icon(FontAwesomeIcons.googlePlus),
+          //         onPressed: () {
+          //           print("Pressed");
+          //           return showDialog(
+          //             context: context,
+          //             builder: (context) {
+          //               return AlertDialog(
+          //                 // Retrieve the text the that user has entered by using the
+          //                 // TextEditingController.
+          //                 content: Text("Funcionalidade em Desenvolvimento"),
+          //               );
+          //             },
+          //           );
+          //         }),
+          //     IconButton(
+          //         // Use the FontAwesomeIcons class for the IconData
+          //         icon: new Icon(FontAwesomeIcons.facebook),
+          //         onPressed: () {
+          //           return showDialog(
+          //             context: context,
+          //             builder: (context) {
+          //               return AlertDialog(
+          //                 // Retrieve the text the that user has entered by using the
+          //                 // TextEditingController.
+          //                 content: Text("Funcionalidade em Desenvolvimento"),
+          //               );
+          //             },
+          //           );
+          //         })
+          //   ],
+          // )
+
+          // ÍCONES SOCIAIS
+
         ],
       ),
       // floatingActionButton: FloatingActionButton(
