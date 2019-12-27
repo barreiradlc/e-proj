@@ -1,8 +1,29 @@
 import 'package:flutter/material.dart';
+import '../../Funcoes/UserData.dart';
 
-// void main() => runApp(Inicio());
 
-class Inicio extends StatelessWidget {
+// var jwt  = void_getJWT();
+// print(jwt);
+class InicioState extends StatefulWidget {
+  @override
+  Inicio createState() => Inicio();
+}
+
+class Inicio extends State<InicioState> {
+  String username = '';
+
+
+@override
+  void initState(){
+    super.initState();  
+    getUser()
+      .then(( username ) {
+        setState(() {
+          this.username = username;
+        });
+      });
+  }
+
   @override
   Widget build(BuildContext context) {
     // final title = 'Itens';
@@ -21,7 +42,9 @@ class Inicio extends StatelessWidget {
               children: <Widget>[
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[Text("Bem vindo !")],
+                  children: <Widget>[
+                    Text("Bem vindo, " + this.username + " !")
+                  ],
                 )
               ],
             )

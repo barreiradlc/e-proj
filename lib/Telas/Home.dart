@@ -31,7 +31,8 @@ class Tabs extends State<HomeState>{
   Widget build(BuildContext context) {
 
 
-    // var user = UserData.void_getJWT();
+    // var user = 
+    ;
     
     // setState(() {
     //   this.jwt = jwt;
@@ -50,7 +51,7 @@ class Tabs extends State<HomeState>{
             children: [
               new Container(
                 color: Colors.yellow,
-                child:Inicio()
+                child:InicioState()
                 // child: Text('Bem vindo ' + this.username)
               ),
               new Container(
