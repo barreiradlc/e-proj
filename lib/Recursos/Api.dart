@@ -1,0 +1,1 @@
+var host = 'http://eproj-teste.herokuapp.com/';
