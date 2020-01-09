@@ -1,27 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:web_view/Telas/Parcial/Carousel.dart';
 import '../../Funcoes/UserData.dart';
-
 
 // var jwt  = void_getJWT();
 // print(jwt);
-class InicioState extends StatefulWidget {
+class Inicio extends StatefulWidget {
   @override
-  Inicio createState() => Inicio();
+  InicioState createState() => InicioState();
 }
 
-class Inicio extends State<InicioState> {
+class InicioState extends State<Inicio> {
   String username = '';
 
-
-@override
-  void initState(){
-    super.initState();  
-    getUser()
-      .then(( username ) {
-        setState(() {
-          this.username = username;
+  primeiroAcesso() {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return Container(
+              height: double.infinity, 
+              width: double.infinity, 
+              child: AlertDialog(
+                backgroundColor: Colors.transparent,
+                // content: Text('funciona')
+                content: Carousel()
+              ));
         });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUser().then((username) {
+      setState(() {
+        this.username = username;
       });
+      Future.delayed(const Duration(milliseconds: 1000), () {
+            primeiroAcesso();
+      });
+    });
   }
 
   @override

@@ -7,12 +7,11 @@ import '../Funcoes/UserData.dart';
 
 class Home extends StatelessWidget {
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+          
+    return  Scaffold(
         appBar: AppBar(
           title: Text('E-proj')),
         body: HomeState(),
-      ),
     );
   }
 }
@@ -51,7 +50,7 @@ class Tabs extends State<HomeState>{
             children: [
               new Container(
                 color: Colors.yellow,
-                child:InicioState()
+                child:Inicio()
                 // child: Text('Bem vindo ' + this.username)
               ),
               new Container(

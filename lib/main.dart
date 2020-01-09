@@ -66,6 +66,7 @@ class MyApp extends State<Geral> {
         ),
         initialRoute: this.homePage,   
         // initialRoute: '/login',   
+
         routes: {
           // When navigating to the "/" route, build the FirstScreen widget.
           '/login': (context) => login,
@@ -74,7 +75,7 @@ class MyApp extends State<Geral> {
           // When navigating to the "/second" route, build the SecondScreen widget.
           '/home': (context) => inicio,
         },
-        debugShowCheckedModeBanner: false,
+        
       );
 
 
