@@ -8,9 +8,9 @@ import '../Funcoes/UserData.dart';
 class Home extends StatelessWidget {
   Widget build(BuildContext context) {
           
-    return  Scaffold(
+    return Scaffold(
         appBar: AppBar(
-          title: Text('E-proj')),
+          title: Text('E-proj', style: TextStyle(color: Colors.white))),
         body: HomeState(),
     );
   }
@@ -29,10 +29,40 @@ class Tabs extends State<HomeState>{
   @override
   Widget build(BuildContext context) {
 
+    var drawerScaff = Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            child: Text("Bem Vindo " + this.username),
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              // image: DecorationImage(
+              //   // image: bg,
+              //   fit: BoxFit.cover,
+              //   colorFilter: new ColorFilter.mode(
+              //       Colors.black.withOpacity(0.6), BlendMode.dstATop),
+              // ),
+            ),
+          ),
+          ListTile(
+            title: Text('Perfil'),
+            onTap: () {
+              print('perfil');
+            },
+          ),
+          ListTile(
+            title: Text('Sair'),
+            onTap: () {
+              print('sair');
+            },
+          )
+        ],
+      ),
+    );
 
-    // var user = 
-    ;
-    
+
+    // var user
     // setState(() {
     //   this.jwt = jwt;
     //   this.username = username;
@@ -41,9 +71,10 @@ class Tabs extends State<HomeState>{
     // print(user);
 
     // TODO: implement build
-    return new MaterialApp(
-      color: Colors.yellow,
-      home: DefaultTabController(
+    return new Scaffold(
+      // color: Colors.yellow,
+      drawer: drawerScaff,
+      body: DefaultTabController(
         length: 5,
         child: new Scaffold(
           body: TabBarView(

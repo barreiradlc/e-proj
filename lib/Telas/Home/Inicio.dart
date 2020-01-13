@@ -15,44 +15,46 @@ class InicioState extends State<Inicio> {
 
   primeiroAcesso() {
     return showDialog(
+      
         context: context,
         builder: (context) {
           return Container(
-              height: double.infinity, 
-              width: double.infinity, 
+
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.all(0),
               child: AlertDialog(
-                backgroundColor: Colors.transparent,
-                // content: Text('funciona')
-                content: Carousel()
-              ));
+                // elevation: 2,
+                  backgroundColor: Colors.blue, 
+                  // content: Text('funciona')
+
+                  content: Carousel()
+                  // content: Image.asset('assets/call/terreno.png')
+                  ));
         });
   }
 
   @override
   void initState() {
-  @override
-  void initState() {
-
+    print('initstate2');
     super.initState();
     getUser().then((username) {
+      print('initstate3');
       setState(() {
         this.username = username;
       });
       Future.delayed(const Duration(milliseconds: 1000), () {
-            primeiroAcesso();
+        print('initstate4');
+        primeiroAcesso();
       });
     });
-      
-    
-
   }
 
   @override
   Widget build(BuildContext context) {
-
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Projetos()
+    // TODO: implement build
+    return Scaffold(
+      body: Center(child: Text("Algo")),
     );
   }
 }

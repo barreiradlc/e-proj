@@ -13,6 +13,7 @@ import './Telas/Cadastro.dart';
 
 // metodos
 import './Funcoes/UserData.dart';
+import 'Telas/Extras/Termos.dart';
 
 void main() {
   // See https://github.com/flutter/flutter/wiki/Desktop-shells#target-platform-override
@@ -53,12 +54,14 @@ class MyApp extends State<Geral> {
   var inicio = new Home();
   var login = new Login();
   var cadastro = new Cadastro();
+  var terms = new Termos();
 
   @override
   Widget build(BuildContext context) {
 
     if (this.homePage != ''){
       return MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.lightBlue,
           // See https://github.com/flutter/flutter/wiki/Desktop-shells#fonts
@@ -69,9 +72,10 @@ class MyApp extends State<Geral> {
 
         routes: {
           // When navigating to the "/" route, build the FirstScreen widget.
+          
           '/login': (context) => login,
           '/cadastro': (context) => cadastro,
-
+          '/terms': (context) => terms,
           // When navigating to the "/second" route, build the SecondScreen widget.
           '/home': (context) => inicio,
         },
