@@ -11,21 +11,45 @@ class Inicio extends StatefulWidget {
 }
 
 class InicioState extends State<Inicio> {
+  novoProjeto() async {
+    Navigator.of(context, rootNavigator: true).pop('dialog');
+    formPRJ();
+    // Future.delayed(const Duration(milliseconds: 1000), () {
+    //   Navigator.pushNamed(context, '/novo_um');
+    // });
+  }
+
   String username = '';
 
-  primeiroAcesso() {
+  formPRJ(){
     return showDialog(
-      
         context: context,
         builder: (context) {
           return Container(
-
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.all(0),
               child: AlertDialog(
-                // elevation: 2,
-                  backgroundColor: Colors.blue, 
+
+                content: Text( 'alou')
+              )
+          );
+        }
+    );
+  }
+
+
+  primeiroAcesso() {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.all(0),
+              child: AlertDialog(
+                  // elevation: 2,
+                  backgroundColor: Colors.blue,
                   // content: Text('funciona')
 
                   content: Carousel()
@@ -43,9 +67,10 @@ class InicioState extends State<Inicio> {
       setState(() {
         this.username = username;
       });
-      Future.delayed(const Duration(milliseconds: 1000), () {
+      Future.delayed(const Duration(milliseconds: 3000), () {
         print('initstate4');
         primeiroAcesso();
+        formPRJ();
       });
     });
   }

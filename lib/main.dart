@@ -14,6 +14,7 @@ import './Telas/Cadastro.dart';
 // metodos
 import './Funcoes/UserData.dart';
 import 'Telas/Extras/Termos.dart';
+import 'Telas/Home/NovoProjetoPassoUm.dart';
 
 void main() {
   // See https://github.com/flutter/flutter/wiki/Desktop-shells#target-platform-override
@@ -55,6 +56,7 @@ class MyApp extends State<Geral> {
   var login = new Login();
   var cadastro = new Cadastro();
   var terms = new Termos();
+  var novo_um = new NovoProjetoPassoUm();
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +80,8 @@ class MyApp extends State<Geral> {
           '/terms': (context) => terms,
           // When navigating to the "/second" route, build the SecondScreen widget.
           '/home': (context) => inicio,
+          
+          '/novo_um': (context) => novo_um,
         },
         
       );
